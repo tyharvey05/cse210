@@ -27,8 +27,6 @@ class Video
 
     public int GetNumberOfComments() => _comments.Count;
 
-    public List<Comment> GetComments() => _comments;
-
     public void DisplayInfo()
     {
         Console.WriteLine($"Title: {_title}");
@@ -40,6 +38,7 @@ class Video
         {
             Console.WriteLine($"- {comment.GetCommenterName()}: {comment.GetText()}");
         }
+        Console.WriteLine();
     }
 }
 
@@ -62,9 +61,33 @@ class Program
 {
     static void Main()
     {
-        Video video1 = new Video("Introduction to C#", "John Doe", 10);
-        video1.AddComment("Alice", "Great explanation!");
-        video1.AddComment("Bob", "Very helpful, thanks!");
-        video1.DisplayInfo();
+        List<Video> videos = new List<Video>
+        {
+            new Video("Introduction to C#", "John Doe", 10),
+            new Video("Object-Oriented Programming", "Jane Smith", 15),
+            new Video("Advanced C# Concepts", "Michael Brown", 20),
+            new Video("Design Patterns in C#", "Emily White", 25)
+        };
+
+        videos[0].AddComment("Alice", "Great explanation!");
+        videos[0].AddComment("Bob", "Very helpful, thanks!");
+        videos[0].AddComment("Charlie", "Can you cover interfaces next?");
+
+        videos[1].AddComment("David", "OOP is really powerful!");
+        videos[1].AddComment("Eve", "I finally understand encapsulation.");
+        videos[1].AddComment("Frank", "Good job breaking things down!");
+
+        videos[2].AddComment("Grace", "The examples were really helpful.");
+        videos[2].AddComment("Hank", "Please do a tutorial on delegates.");
+        videos[2].AddComment("Ivy", "Advanced topics explained well!");
+
+        videos[3].AddComment("Jack", "Great video on design patterns!");
+        videos[3].AddComment("Karen", "Loved the strategy pattern example.");
+        videos[3].AddComment("Leo", "More videos on software architecture, please!");
+
+        foreach (var video in videos)
+        {
+            video.DisplayInfo();
+        }
     }
 }

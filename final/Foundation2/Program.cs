@@ -4,15 +4,18 @@ class Product
 {
     private string _name;
     private double _price;
+    private int _productId;
 
-    public Product(string name, double price)
+    public Product(string name, double price, int productId)
     {
         _name = name;
         _price = price;
+        _productId = productId;
     }
 
     public string GetName() => _name;
     public double GetPrice() => _price;
+    public int GetProductId() => _productId;
 }
 
 class Address
@@ -71,6 +74,8 @@ class Order
         return $"Customer: {_customer.GetName()}\n" +
                $"Address: {_customer.GetAddress().GetFullAddress()}\n" +
                $"Product: {_product.GetName()}\n" +
+               $"Product ID: {_product.GetProductId()}\n" +
+               $"Price per Unit: ${_product.GetPrice():F2}\n" +
                $"Quantity: {_quantity}\n" +
                $"Total Price: ${_totalPrice:F2}";
     }
@@ -82,7 +87,7 @@ class Program
     {
         Address address = new Address("123 Main St", "Springfield", "12345");
         Customer customer = new Customer("Alice", address);
-        Product product = new Product("Laptop", 999.99);
+        Product product = new Product("Laptop", 999.99, 101);
         Order order = new Order(customer, product, 2);
 
         Console.WriteLine(order.GetOrderDetails());
